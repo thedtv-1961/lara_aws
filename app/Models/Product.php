@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
@@ -14,4 +15,13 @@ class Product extends Model
         'price',
         'image',
     ];
+
+    public function getImageAttribute($value)
+    {
+        if ($value) {
+            return Storage::disk('s3')->url($value);
+        }
+
+        return Storage::url('no_image.png');
+    }
 }

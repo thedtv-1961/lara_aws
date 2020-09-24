@@ -6,6 +6,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Product</title>
+    <style>
+        .product-img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 <body>
 <h3>Product List</h3>
@@ -24,7 +30,9 @@
     @foreach($products as $product)
         <tr>
             <td>{{ $product->id }}</td>
-            <td>{{ $product->image }}</td>
+            <td>
+                <img class="product-img" src="{{ $product->image }}">
+            </td>
             <td>{{ $product->name }}</td>
             <td>{{ $product->price }}</td>
             <td>
