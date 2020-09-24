@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use function Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -41,7 +43,19 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $result = Product::create($request->post());
+        $productParameter = $request->post();
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            if ($productParameter['type']) {
+                $fileName = Storage::disk('s3')->put('/product', $request->file('image'));
+                Storage::disk('s3')->setVisibility($fileName, 'public');
+            } else {
+                $fileName = $request->file('image')->store('product');
+            }
+            $productParameter['image'] = $fileName;
+        }
+
+        $result = Product::create($productParameter);
 
         if ($result) {
             return redirect()->route('product.index');

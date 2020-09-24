@@ -37,6 +37,19 @@
             </td>
         </tr>
         <tr>
+            <td>Save Type:</td>
+            <td>
+                <p style="display: inline">
+                    <input type="radio" name="type" value="0" checked>
+                    Local
+                </p>
+                <p style="display: inline">
+                    <input type="radio" name="type" value="1">
+                    S3
+                </p>
+            </td>
+        </tr>
+        <tr>
             <td>Image:</td>
             <td>
                 <input type="file" name="image">
