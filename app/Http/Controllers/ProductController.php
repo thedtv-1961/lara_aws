@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use function Illuminate\Support\Facades\Storage;
 
@@ -18,9 +19,11 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all()->sortByDesc('id');
+        $userName = Auth::user()->name;
 
         return view('product.index', [
             'products' => $products,
+            'user_name' => $userName,
         ]);
     }
 
