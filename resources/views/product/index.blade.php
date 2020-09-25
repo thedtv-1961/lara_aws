@@ -22,6 +22,8 @@
         <th>ID</th>
         <th>Image</th>
         <th>Name</th>
+        <th>Category</th>
+        <th>Username created</th>
         <th>Price</th>
         <th></th>
     </tr>
@@ -34,6 +36,8 @@
                 <img class="product-img" src="{{ $product->image }}">
             </td>
             <td>{{ $product->name }}</td>
+            <td>{{ $product->category->name ?? '' }}</td>
+            <td>{{ $product->user->username ?? '' }} ({{ $product->user->name ?? '' }})</td>
             <td>{{ $product->price }}</td>
             <td>
                 <a href="#">Edit</a>

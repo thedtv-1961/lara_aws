@@ -24,4 +24,14 @@ class Product extends Model
 
         return Storage::url('no_image.png');
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

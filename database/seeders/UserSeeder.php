@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class ProductSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,10 +15,10 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $isProductEmpty = Product::exists();
+        $isUserEmpty = User::exists();
 
-        if ($isProductEmpty) {
-            Product::factory()->count(25)->create();
+        if ($isUserEmpty) {
+            User::factory()->count(3)->create();
         }
     }
 }
