@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthenticationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,19 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    echo 'Hi';
+Route::group(['middleware' => ['custom.auth']], function (){
+    Route::get('/', function () {
+        echo 'Hi';
+    });
+
+    Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
+
+    Route::get('/logout', [AuthenticationController::class, 'logout'])->name('authentication.logout');
 });
-Route::get('/product', [ProductController::class, 'index'])->name('product.index');
-Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
-Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
+
+Route::get('/login', [AuthenticationController::class, 'login'])->name('authentication.login');
+Route::post('/login', [AuthenticationController::class, 'postLogin'])->name('authentication.post_login');
+Route::get('/error', [HomeController::class, 'error'])->name('error');
+

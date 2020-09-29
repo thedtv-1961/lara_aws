@@ -14,6 +14,7 @@
     </style>
 </head>
 <body>
+<p>User: {{ $user_name }} | <a href="{{ route('authentication.logout') }}">Logout</a></p>
 <h3>Product List</h3>
 <a href="{{ route('product.create') }}">New</a>
 <table border="1">
