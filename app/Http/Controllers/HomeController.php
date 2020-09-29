@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -20,4 +20,17 @@ class HomeController extends Controller
         abort(404);
     }
 
+    public function hi()
+    {
+        return view('hi');
+    }
+
+    public function checkAdminGate()
+    {
+        if (Gate::allows('check-admin-gate')) {
+            echo 'You are ADMIN';
+        } else {
+            echo 'Your are not ADMIN';
+        }
+    }
 }

@@ -16,7 +16,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::all()->sortByDesc('id');
         $userName = Auth::user()->name;
