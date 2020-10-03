@@ -10,4 +10,14 @@ class HomeController extends Controller
     {
         return view('error');
     }
+
+    public function my_403()
+    {
+        abort(403);
+    }
+    public function my_404()
+    {
+        abort(404);
+    }
+
 }

@@ -28,6 +28,8 @@ Route::group(['middleware' => ['custom.auth']], function (){
     Route::get('/logout', [AuthenticationController::class, 'logout'])->name('authentication.logout');
 });
 
+Route::get('/my-403', [HomeController::class, 'my_403'])->name('my_403');
+
 Route::get('/login', [AuthenticationController::class, 'login'])->name('authentication.login');
 Route::post('/login', [AuthenticationController::class, 'postLogin'])->name('authentication.post_login');
 Route::get('/error', [HomeController::class, 'error'])->name('error');
