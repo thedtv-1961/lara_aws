@@ -10,7 +10,7 @@ class AuthenticationController extends Controller
     public function login()
     {
         if (Auth::check()) {
-            return redirect()->route('product.index');
+            return redirect()->route('hi');
         }
 
         return view('auth.login');
@@ -21,7 +21,7 @@ class AuthenticationController extends Controller
         $credentials = $request->only('username', 'password');
         $result = Auth::attempt($credentials, true);
 
-        return $result ? redirect()->route('product.index') : redirect()->route('authentication.login');
+        return $result ? redirect()->route('hi') : redirect()->route('authentication.login');
     }
 
     public function logout()

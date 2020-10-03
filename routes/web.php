@@ -17,14 +17,13 @@ use App\Http\Controllers\AuthenticationController;
 */
 
 Route::group(['middleware' => ['custom.auth']], function (){
-    Route::get('/', function () {
-        echo 'Hi';
-    });
+    Route::get('/', [HomeController::class, 'hi'])->name('hi');
 
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
     Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
 
+    Route::get('/check-admin-gate', [HomeController::class, 'checkAdminGate'])->name('check_admin_gate');
     Route::get('/logout', [AuthenticationController::class, 'logout'])->name('authentication.logout');
 });
 
