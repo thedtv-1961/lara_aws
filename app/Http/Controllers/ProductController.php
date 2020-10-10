@@ -68,12 +68,18 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\product  $product
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     * @return \Illuminate\View\View
      */
-    public function show(product $product)
+    public function show(int $id)
     {
-        //
+        $product = Product::find($id);
+
+        if (\auth()->user()->can('view', $product)){
+            return view('product.show', compact('product'));
+        } else {
+            echo "You aren't owner this product";
+        }
     }
 
     /**

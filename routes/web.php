@@ -22,6 +22,7 @@ Route::group(['middleware' => ['custom.auth']], function (){
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
     Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
     Route::get('/check-admin-gate', [HomeController::class, 'checkAdminGate'])->name('check_admin_gate');
     Route::get('/logout', [AuthenticationController::class, 'logout'])->name('authentication.logout');

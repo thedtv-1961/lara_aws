@@ -41,9 +41,13 @@
             <td>{{ $product->user->username ?? '' }} ({{ $product->user->name ?? '' }})</td>
             <td>{{ $product->price }}</td>
             <td>
-                <a href="#">Edit</a>
+                @can('view', $product)
+                    <a href="{{ route('product.show', ['id' => $product->id]) }}">Edit</a>
+                @else
+                    <span>Edit //Pls login with this product owner//</span>
+                @endcan
                 |
-                <a href="#">Delete</a>
+                <span>Delete</span>
             </td>
         </tr>
     @endforeach
