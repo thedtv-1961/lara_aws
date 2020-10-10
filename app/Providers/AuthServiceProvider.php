@@ -23,6 +23,7 @@ namespace App\Providers;
 
 use App\Models\Product;
 use App\Common\Constant;
+use Laravel\Passport\Passport;
 use App\Policies\ProductPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -51,5 +52,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('check-admin-gate', function ($user){
             return $user->hasRole(Constant::ROLE_ADMIN);
         });
+
+        Passport::routes();
+        Passport::tokensExpireIn(now()->addMinutes(5));
+        // Passport::refreshTokensExpireIn(now()->addDays(30));
+        // Passport::personalAccessTokensExpireIn(now()->addMonths(6));
     }
 }
