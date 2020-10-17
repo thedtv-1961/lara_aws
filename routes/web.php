@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -33,4 +34,3 @@ Route::get('/my-403', [HomeController::class, 'my_403'])->name('my_403');
 Route::get('/login', [AuthenticationController::class, 'login'])->name('authentication.login');
 Route::post('/login', [AuthenticationController::class, 'postLogin'])->name('authentication.post_login');
 Route::get('/error', [HomeController::class, 'error'])->name('error');
-
